@@ -2,6 +2,7 @@ package com.bit2016.datepickerdialog;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.TimePicker;
 
 import java.util.Calendar;
 
@@ -40,6 +42,22 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(intent, REQUEST_CODE_END_DATE);
             }
         });
+
+        findViewById(R.id.textView4).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, TimePickerActivity.class);
+                startActivityForResult(intent, REQUEST_CODE_BEGIN_TIME);
+            }
+        });
+
+        findViewById(R.id.textView6).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, TimePickerActivity.class);
+                startActivityForResult(intent, REQUEST_CODE_END_TIME);
+            }
+        });
     }
 
     @Override
@@ -64,6 +82,18 @@ public class MainActivity extends AppCompatActivity {
 
             TextView textView = (TextView)findViewById(R.id.textView3);
             textView.setText(year + "-" + month + "-" + date);
+        } else if(requestCode == REQUEST_CODE_BEGIN_TIME) {
+            int hour = intent.getIntExtra("hourOfDay", -1);
+            int minute = intent.getIntExtra("minute", -1);
+
+            TextView textView = (TextView)findViewById(R.id.textView4);
+            textView.setText(hour + " : " + minute);
+        } else if(requestCode == REQUEST_CODE_END_TIME) {
+            int hour = intent.getIntExtra("hourOfDay", -1);
+            int minute = intent.getIntExtra("minute", -1);
+
+            TextView textView = (TextView)findViewById(R.id.textView6);
+            textView.setText(hour + " : " + minute);
         }
     }
 
@@ -87,5 +117,27 @@ public class MainActivity extends AppCompatActivity {
         });
 
         datePickerDialog.show();
+    }
+
+    public void dialogTimePicker(View view) {
+        Calendar calendar = Calendar.getInstance();
+
+        TimePickerDialog timePickerDialog = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                Log.d("---------->", hourOfDay + "시 " + minute + "분");
+                String time = hourOfDay + "시 " + minute + "분";
+                ((EditText)findViewById(R.id.editText2)).setText(time);
+            }
+        }, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true);
+
+        timePickerDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialog) {
+                Log.d("dialogTimePicker", "onCancel() called");
+            }
+        });
+
+        timePickerDialog.show();
     }
 }
