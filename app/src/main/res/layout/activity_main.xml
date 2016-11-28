@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
@@ -10,8 +9,65 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.bit2016.datepickerdialog.MainActivity">
 
-    <TextView
+    <EditText
+        android:id="@+id/editText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="36dp"
+        android:enabled="false"
+        android:focusable="false"
+        android:hint="생년월일" />
+
+    <Button
+        android:id="@+id/buttonDatePicker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="94dp"
+        android:onClick="dialogDatePicker"
+        android:text="DatePicker Dialog" />
+
+    <Button
+        android:id="@+id/buttonTimePicker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/buttonDatePicker"
+        android:layout_alignStart="@+id/buttonDatePicker"
+        android:layout_below="@+id/buttonDatePicker"
+        android:layout_marginTop="40dp"
+        android:text="TimePicker Dialog" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/textView"
+        android:layout_toEndOf="@+id/textView"
+        android:layout_toRightOf="@+id/textView"
+        android:text="-" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView2"
+        android:layout_alignBottom="@+id/textView2"
+        android:layout_alignEnd="@+id/buttonDatePicker"
+        android:layout_alignRight="@+id/buttonDatePicker"
+        android:text="종료일" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/buttonTimePicker"
+        android:layout_alignStart="@+id/buttonTimePicker"
+        android:layout_below="@+id/buttonTimePicker"
+        android:layout_marginTop="42dp"
+        android:text="시작일" />
+
+
 </RelativeLayout>
